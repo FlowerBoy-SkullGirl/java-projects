@@ -6,10 +6,23 @@ public interface Pet{
 }
 
 public class Dog extends Animal implements Pet{
+	//constants are static final like so
+	public static final int T = 500;
 	public void beFriendly()
 	{
 		//etc
 		//Takes the superclass version of the method
 		super.eat();
+	}
+	//Pass constructor arguments to superclasses like so
+	public Dog(int x)
+	{
+		super(x);
+	}
+	//Or pass to the other class constructor
+	public Dog()
+	{
+		//Calls Dog(int)
+		this(5);
 	}
 }
