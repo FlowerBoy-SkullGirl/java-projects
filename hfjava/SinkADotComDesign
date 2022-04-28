@@ -1,0 +1,11 @@
+Start a game
+	Create 3 dot coms
+	Place them on a grid
+Game starts
+	Prompt user for guess
+	Check guess
+	Delete cell if user correct
+		Delete dot com if all cells gone
+Game finishes
+	Display results
+
