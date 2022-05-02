@@ -1,0 +1,10 @@
+public static MidiEvent makeEvent(int command, int chan, int one, int two, int tick)
+{
+	MidiEvent event = null;
+	try{
+		ShortMessage a = new ShortMessage();
+		a.setMessage(command, chan, one, two);
+		event = new MidiEvent(a, tick);
+	}catch (Exception e) {}
+	return event;
+}
