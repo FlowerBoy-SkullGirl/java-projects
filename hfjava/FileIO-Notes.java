@@ -69,3 +69,9 @@ f.delete(); //returns a bool of success value
 //BufferedWriter writes to a buffer before disk, so you move data only when buffer is full and more efficiently or until you use bufferwriter.flush(); method
 
 
+//Serialized classes have an implicit version
+//use command
+serialver ClassName
+//to find the version and create the variable
+static final long serialVersionUID = {output of command}
+//if you want to override JVM failing to deserialize different versions

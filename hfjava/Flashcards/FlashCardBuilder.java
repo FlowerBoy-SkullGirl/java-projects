@@ -11,6 +11,11 @@ public class FlashCardBuilder{
 	private ArrayList cardList;
 	private JFrame frame;
 	
+	public static void main(String[] args)
+	{
+		FlashCardBuilder gui = new FlashCardBuilder();
+		gui.go();
+	}
 	//build a gui
 	public void go()
 	{
