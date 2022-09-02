@@ -1,0 +1,12 @@
+WILDCARDS
+	For polymorphic data structures
+		eg.
+		public void func(ArrayList<? extends Animal> animals);
+
+	Wildcards prevent using add() to the Collection that is passed in, therefore avoiding compile time issues where this would be allowed
+
+	Can also use a "template" generic type
+	public <T extends Animal> void func(ArrayList<T> a);
+
+
+	

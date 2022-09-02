@@ -1,0 +1,11 @@
+class ThreadTester{
+	public static void main(String[] args)
+	{
+		Runnable threadJob = new MyRunJob();
+		Thread myThread = new Thread(threadJob);
+
+		myThread.start();
+
+		System.out.println("back in main");
+	}
+}

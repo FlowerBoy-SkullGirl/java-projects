@@ -1,0 +1,20 @@
+Thread method setName() can set a thread's name
+
+Thread is a class, and it's constructor can be used with a Runnable implementation and the start() method to start a Thread
+
+Thread.currentThread.getName(); returns a string
+
+the keyword synchronized can be used to ensure that only one thread can access it at a time
+
+eg
+
+private synchronized void makeWithdrawal(int amount){}
+
+all objects synchronized methods are blocked when any other synchronized method is running
+
+synchronized(this){
+	statements
+	statements
+}
+
+

@@ -1,0 +1,145 @@
+Useful to separate source and object directories
+	javac -d (directory) MyCLass.java
+
+Java Archive
+	JAR
+		pkzip
+	Create a manifest
+		manifest.txt
+			Main-class: MyCLass
+			(needs a return after the first line)
+		jar -cvmf manifest.txt app.jar *.class
+		or
+		jar -cvmf manifest.txt appname.jar MyCLass.class
+
+	To run
+		java -jar appname.jar
+	
+Packages are like namespaces
+	It is advised to reverse your domain name as a package's qualified name
+	eg
+		com.mydomain.className
+		net.murphyshort.MyCLass
+	
+Packages must be the first statement, before any imports
+
+eg
+	package net.murphyshort;
+
+	import SHIT;
+
+	public class MyCLass{}
+
+and file directory as so
+classes
+	-net
+		-murphyshort
+			-MyCLass.class
+source
+	-net
+		-murphyshort
+			-MyCLass.java
+
+compile in source directory, not in package directory
+
+running java net.murphyshort.etc
+	java will search for net, murphyshort directory
+
+
+The manifest still remains in the classes directory, not in a lower directory
+	manifest.txt
+		Main-class: net.murphyshort.MyCLass
+And it will search for directories just as the JVM does when running class directly
+
+Then when archiving, specify the next lowest directory
+	jar -cvmf manifest.txt pack.jar net
+
+To UNARCHIVE
+	use the -tf flag
+	to see a table file
+	use -xf to extract file
+
+	JAR ing a file creates a META-INF folder which then contains your manifest
+
+
+Java Web Start
+	kinda like a DHCP request
+	Client browser requests JWS app .jnlp
+		Java Network Launch Protocol
+		XML with version, utf encoding, codebase, location of the jnlp
+		author, description, etc, name of jar
+		main class name
+	Server replies
+	Client requests jar
+	server replies
+	Client starts the jar
+
+To do the above
+	Make a JAR
+	write the jnlp
+	Move them to your web server
+	link to the jnlp
+
+RMI
+	Remote Method Invocation
+
+	Make a remote interface with the methods you want to be called remotely
+		the client helper and stub will both implement this
+	use command rmic ImplementationName.java to generate stubs and skeletons
+	run rmiregistry
+	start the remote implementation
+		this registers the service in the registry
+	
+Remote interface has to 
+	extends Remote
+	all methods must
+		throws RemoteException
+		eg public String stringCat() throws RemoteExcetion{}
+	Return values must be serializable to be sent to the client
+
+Remote implementation must
+	extends UnicastRemoteObject
+	and implements RemoteInterface
+
+	Must declare a constructor with 
+		throws RemoteException {}
+
+	RMI registry requires
+	Naming.rebind("Remote Method", remoteInterfaceReferenceObject);
+
+import java.rmi.*;
+
+Client acts like so
+	RemoteImplement remoteObject = (RemoteImplement) Naming.lookup("rmi://127.0.0.1/Remote Method");
+	remoteObject.stringCat();
+
+
+
+SERVLETS
+	Run on an HTTP server
+
+	Packages need to be downloaded(as of book date) in a jar on java.sun.com
+
+	extend HttpServlet
+
+	html page has to invoke servlet
+
+	import javax.servlet.*;
+	import javax.servlet.http.*;
+
+	override
+	public void doGet(HttpServletRequest r, HttpServletResponse rs) throws ServletException, IOException;
+
+	response.setContentType("text/html");
+
+
+
+ASSERTIONS
+	allow you to use optional debugging information in code
+		assert (height > 0);
+			when we want an exception if height is NOT greater than 0
+		or assert (height > 0) : "height = " + height;
+			to add debugging variable info
+	run assertions with -ea command line arguments
+
+
