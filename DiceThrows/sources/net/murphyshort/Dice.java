@@ -1,3 +1,4 @@
+package net.murphyshort;
 import java.util.*;
 
 public class Dice{
